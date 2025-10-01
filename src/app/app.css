@@ -1,0 +1,17 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
+  color: #fff;
+}
+
+
+.navbar {
+  background-color: transparent;
+}
+
+.footer {
+  background-color: #222;
+  color: #aaa;
+  padding: 30px 0;
+  text-align: center;
+}

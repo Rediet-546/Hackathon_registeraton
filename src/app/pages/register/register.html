@@ -1,0 +1,65 @@
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <h2>{{ isLoginFormVisible() ? 'Login' : 'Create Account' }}</h2>
+    <p id="form-desc">
+      {{ isLoginFormVisible()
+          ? 'Sign in to access your dashboard.'
+          : 'Fill in the details below to create a new account.' }}
+    </p>
+
+    <!-- ✅ Register Form -->
+    <form class="form" [class.active]="!isLoginFormVisible()">
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="John Doe" required />
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" placeholder="johndoe@mail.com" required />
+      </div>
+
+      <div class="input-group">
+        <label>College Name</label>
+        <input type="text" placeholder="Example University" required />
+      </div>
+
+      <div class="input-group">
+        <label>Role</label>
+        <input type="text" placeholder="Student / Developer" required />
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" placeholder="******" required />
+      </div>
+
+      <button type="submit" class="btn-gradient">Register</button>
+    </form>
+
+    <!-- ✅ Login Form -->
+    <form class="form" [class.active]="isLoginFormVisible()">
+      <div class="input-group">
+        <label>Email</label>
+        <input type="email" placeholder="johndoe@mail.com" required />
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" placeholder="******" required />
+      </div>
+
+      <button type="submit" class="btn-gradient">Login</button>
+    </form>
+
+    <!-- ✅ Toggle Links -->
+    <p class="toggle-text" *ngIf="!isLoginFormVisible()">
+      Already have an account?
+      <a href="#" (click)="toggleForm(); $event.preventDefault()">Login</a>
+    </p>
+    <p class="toggle-text" *ngIf="isLoginFormVisible()">
+      Don’t have an account?
+      <a href="#" (click)="toggleForm(); $event.preventDefault()">Create Account</a>
+    </p>
+  </div>
+</div>
