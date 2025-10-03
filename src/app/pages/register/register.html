@@ -1,65 +1,47 @@
-<div class="auth-wrapper">
-  <div class="auth-card">
-    <h2>{{ isLoginFormVisible() ? 'Login' : 'Create Account' }}</h2>
-    <p id="form-desc">
-      {{ isLoginFormVisible()
-          ? 'Sign in to access your dashboard.'
-          : 'Fill in the details below to create a new account.' }}
-    </p>
+<div class="auth-card">
 
-    <!-- ✅ Register Form -->
-    <form class="form" [class.active]="!isLoginFormVisible()">
-      <div class="input-group">
-        <label>Full Name</label>
-        <input type="text" placeholder="John Doe" required />
-      </div>
+  <!-- Login Form -->
+  <form *ngIf="isLogin" #loginForm="ngForm" (ngSubmit)="onLoginSubmit(loginForm.value)">
+    <h3><i class="fa fa-sign-in"></i> Login</h3>
 
-      <div class="input-group">
-        <label>Email</label>
-        <input type="email" placeholder="johndoe@mail.com" required />
-      </div>
+    <div class="mb-3">
+      <input type="email" class="form-control" placeholder="Email" name="email" ngModel required>
+    </div>
 
-      <div class="input-group">
-        <label>College Name</label>
-        <input type="text" placeholder="Example University" required />
-      </div>
+    <div class="mb-3">
+      <input type="password" class="form-control" placeholder="Password" name="password" ngModel required>
+    </div>
 
-      <div class="input-group">
-        <label>Role</label>
-        <input type="text" placeholder="Student / Developer" required />
-      </div>
+    <button type="submit" class="btn">Login</button>
+    <a class="toggle-link" (click)="toggleForm()">New user? Register here</a>
+  </form>
 
-      <div class="input-group">
-        <label>Password</label>
-        <input type="password" placeholder="******" required />
-      </div>
+  <!-- Register Form -->
+  <form *ngIf="!isLogin" #registerForm="ngForm" (ngSubmit)="onRegisterSubmit(registerForm.value)">
+    <h3><i class="fa fa-user-plus"></i> Register</h3>
 
-      <button type="submit" class="btn-gradient">Register</button>
-    </form>
+    <div class="mb-3">
+      <input type="text" class="form-control"[(ngModel)]="registerObj.fullname" placeholder="Full Name" name="fullname" ngModel required>
+    </div>
 
-    <!-- ✅ Login Form -->
-    <form class="form" [class.active]="isLoginFormVisible()">
-      <div class="input-group">
-        <label>Email</label>
-        <input type="email" placeholder="johndoe@mail.com" required />
-      </div>
+    <div class="mb-3">
+      <input type="email" class="form-control"[(ngModel)]="registerObj.email" placeholder="Email" name="email" ngModel required>
+    </div>
 
-      <div class="input-group">
-        <label>Password</label>
-        <input type="password" placeholder="******" required />
-      </div>
+    <div class="mb-3">
+      <input type="text" class="form-control" [(ngModel)]="registerObj.password" placeholder="College Name" name="college" ngModel required>
+    </div>
 
-      <button type="submit" class="btn-gradient">Login</button>
-    </form>
+    <div class="mb-3">
+      <input type="password" class="form-control"[(ngModel)]="registerObj.collegeName" placeholder="Password" name="password" ngModel required>
+    </div>
 
-    <!-- ✅ Toggle Links -->
-    <p class="toggle-text" *ngIf="!isLoginFormVisible()">
-      Already have an account?
-      <a href="#" (click)="toggleForm(); $event.preventDefault()">Login</a>
-    </p>
-    <p class="toggle-text" *ngIf="isLoginFormVisible()">
-      Don’t have an account?
-      <a href="#" (click)="toggleForm(); $event.preventDefault()">Create Account</a>
-    </p>
-  </div>
+    <div class="mb-3">
+      <input type="password" class="form-control"[(ngModel)]="registerObj.role" placeholder="Password" name="password" ngModel required>
+    </div>
+
+    <button type="submit" (click)="onRegister()" class="btn">Register</button>
+    <p>Already have an account?<a class="toggle-link" (click)="toggleForm()"> Login here</a></p>
+  </form>
+
 </div>
